@@ -1,5 +1,7 @@
 import React, { Suspense } from "react";
 import Category from "../Category/Category";
+import Q_Zone from "./Q_Zone";
+import Blog from "../Blog/Blog";
 
 const LeftAside = () => {
   return (
@@ -9,6 +11,8 @@ const LeftAside = () => {
       >
         <Category />
       </Suspense>
+
+      <Blog></Blog>
     </div>
   );
 };
