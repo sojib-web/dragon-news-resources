@@ -25,7 +25,7 @@ const HomeLayout = () => {
       {/* Main Content Area: 3-column layout */}
       <main className="w-11/12 mx-auto grid grid-cols-12 gap-10 mt-10">
         {/* Left Sidebar - col-span-3/12 */}
-        <aside className="col-span-3">
+        <aside className="col-span-3 sticky top-0 h-fit">
           <LeftAside />
         </aside>
 
@@ -35,7 +35,7 @@ const HomeLayout = () => {
         </section>
 
         {/* Right Sidebar - col-span-3/12 */}
-        <aside className="col-span-3">
+        <aside className="col-span-3 sticky top-0 h-fit">
           <RightAside />
         </aside>
       </main>

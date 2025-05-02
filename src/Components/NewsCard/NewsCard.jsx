@@ -2,9 +2,10 @@ import React from "react";
 import { FaEye, FaRegBookmark, FaStar } from "react-icons/fa";
 import { format } from "date-fns";
 import { MdOutlineShare } from "react-icons/md";
+import { Link } from "react-router";
 
 const NewsCard = ({ news }) => {
-  const { title, details, image_url, author, total_view, rating } = news;
+  const { title, details, image_url, author, total_view, rating, id } = news;
 
   const formattedDate = format(new Date(author.published_date), "yyyy-MM-dd");
 
@@ -49,9 +50,12 @@ const NewsCard = ({ news }) => {
         {/* Details */}
         <p className="text-sm text-gray-700">
           {details.length > 250 ? `${details.slice(0, 250)}...` : details}
-          <span className="text-orange-500 font-medium ml-1 cursor-pointer">
+          <Link
+            to={`/news-details/${id}`}
+            className="text-orange-500 font-medium ml-1 cursor-pointer"
+          >
             Read More
-          </span>
+          </Link>
         </p>
 
         {/* Rating and Views */}

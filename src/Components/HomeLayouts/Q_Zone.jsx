@@ -12,7 +12,7 @@ const activities = [
 
 const Q_Zone = () => {
   return (
-    <div className="bg-gray-50 p-4 rounded-lg">
+    <div className="bg-gray-50 p-4 rounded-lg mb-20">
       <h2 className="font-bold text-lg mb-5">Q-Zone</h2>
       <div className="space-y-6">
         {activities.map((item, index) => (
