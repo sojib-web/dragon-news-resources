@@ -1,27 +1,31 @@
-import React, { use } from "react";
-import { Link } from "react-router";
+import React, { use, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../Provider/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState("");
   const { SignIn } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    console.log(e.target);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
 
     SignIn(email, password)
       .then((result) => {
+        // eslint-disable-next-line no-unused-vars
         const user = result.user;
-        console.log(user);
+
+        navigate(location.state?.from?.pathname || "/");
       })
       .catch((error) => {
-        console.log(error);
-        alert(error);
+        // console.log(error);
+        // alert(error);
+        setError(error.message);
       });
   };
   return (
@@ -38,6 +42,7 @@ const Login = () => {
             <input
               type="email"
               name="email"
+              required
               placeholder="Enter your email address"
               className="input input-bordered w-full"
             />
@@ -50,6 +55,7 @@ const Login = () => {
             <input
               type="password"
               name="password"
+              required
               placeholder="Enter your password"
               className="input input-bordered w-full"
             />
@@ -61,6 +67,9 @@ const Login = () => {
                 Forgot password?
               </span>
             </label>
+          </div>
+          <div>
+            {error && <p className="text-red-500 text-xs mb-2">{error}</p>}
           </div>
 
           <button type="submit" className="btn btn-neutral w-full mb-4">

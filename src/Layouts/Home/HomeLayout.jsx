@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router"; // For nested route rendering
+import { Outlet, useNavigation } from "react-router"; // For nested route rendering
 import Header from "../../Components/Header/Header";
 import LatestNews from "../../Components/LatestNews/LatestNews";
 import Navbar from "../../Components/Navbar/Navbar";
 import LeftAside from "../../Components/HomeLayouts/LeftAside";
 import RightAside from "../../Components/HomeLayouts/RightAside";
+import Loading from "../../pages/Home/Loading/Loading";
 
 const HomeLayout = () => {
+  const { state } = useNavigation();
   return (
     <div>
       {/* Header Section */}
@@ -31,7 +33,7 @@ const HomeLayout = () => {
 
         {/* Center Content Outlet - nested routes render here */}
         <section className="main col-span-6">
-          <Outlet />
+          {state === "loading" ? <Loading /> : <Outlet />}
         </section>
 
         {/* Right Sidebar - col-span-3/12 */}
